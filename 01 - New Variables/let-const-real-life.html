@@ -6,11 +6,13 @@
 </head>
 <body>
 <script>
+  /* Block scoped variables */
   {
     const name = 'wes';
     console.log(name);
   }
 
+  // Here the for loop doesent leak it's variable 'i'
   for(let i = 0; i < 10; i++) {
     console.log(i);
     setTimeout(function() {
