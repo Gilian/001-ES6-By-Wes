@@ -18,10 +18,19 @@
 <script>
   const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
 
+  /* 
+    Sehr smart. 
+    cuts liefert ein Array aus index und Wert und wird direkt destructured
+    damit es im templatestring verwendet werden kann
+  */
   // for (const [i, cut] of cuts.entries()) {
   //   console.log(`${cut} is the ${i + 1} item`);
   // }
 
+  /*
+    wenn nicht bekannt ist wie viele argumente reinkommen
+    arguments ist aber eine nodelist (?), weswegen nicht reduce verwendet werden kann
+  */
   // function addUpNumbers() {
   //   let total = 0;
   //   for (const num of arguments) {

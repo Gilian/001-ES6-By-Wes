@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tagged Templates</title>
+  <style>
+    abbr {
+      border-bottom:1px dotted grey;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bio">
+
+  </div>
+
+<script>
+  /*
+    Goal: You can return all template strings. So the goal is to filter the template strings
+          matching the dictonary pattern to replace them with an abbr-HTML-Tag
+  */
+
+  const dict = {
+    HTML: 'Hyper Text Markup Language',
+    CSS: 'Cascading Style Sheets',
+    JS: 'JavaScript'
+  };
+
+  // Die Funktion an sich bekommt einen String mit dem Satz und die Werte als Array
+  function addAbbreviations(strings, ...values) {
+    // Für jeden Wert in dem Array
+    const abbreviated = values.map(value => {
+      // Ist der Wert im Wörterbuch
+      if (dict[value]) {
+        return `<abbr title="${dict[value]}">${value}</abbr>`
+      }
+      return value;
+    });
+
+    return strings.reduce((sentence, string, i) => {
+      // Baut den Satz zusammen
+      return sentence + string + (abbreviated[i] || '');
+    }, '');
+    return abbreviated;
+  }
+
+  // Fill textelements
+  const first = 'Tobias';
+  const last = 'Em';
+  const sentence = addAbbreviations`Hello my name is ${first} ${last} and i love to code ${'HTML'}, ${'CSS'} and ${'JS'}!`;
+
+  // Select elements
+  const p = document.createElement('p');
+  const bio = document.querySelector('.bio');
+  p.innerHTML = sentence;
+  bio.appendChild(p);
+
+</script>
+</body>
+</html>
